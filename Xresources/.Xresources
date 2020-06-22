@@ -1,0 +1,56 @@
+! Base16 Materia
+! Scheme: Defman21
+
+#define base00 #263238
+#define base01 #2c393f
+#define base02 #37474f
+#define base03 #707880
+#define base04 #c9ccd3
+#define base05 #cdd3de
+#define base06 #d5dbe5
+#define base07 #ffffff
+#define base08 #ec5f67
+#define base09 #ea9560
+#define base0A #ffcc00
+#define base0B #8bd649
+#define base0C #80cbc4
+#define base0D #89ddff
+#define base0E #82aaff
+#define base0F #ec5f67
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07
+
+URxvt*font: xft:Fira Code:size=14:autohint=true
+*font: mono:pixelsize=18:antialias=true:autohint=true
+*alpha: 1.0
+URxvt*scrollstyle: plain
+URxvt*borderless: 1
+URxvt*saveLines: 5000
+URxvt*scrollBar_right: true
+URxvt*visualBell: true
+URxvt*geometry:  160x50
+URxvt*fading:  30
