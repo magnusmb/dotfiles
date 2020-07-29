@@ -53,6 +53,10 @@ Plug 'dense-analysis/ale'
 "     \ 'do': 'bash install.sh',
 "     \ }
 
+" React
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
+
 " HTML
 Plug 'mattn/emmet-vim'
 
@@ -85,6 +89,7 @@ filetype plugin indent on    " required
     set visualbell
     set scrolloff=5
     set mouse=a
+    set autochdir
 
 " Coding setup
     set tabstop=8
@@ -137,29 +142,34 @@ filetype plugin indent on    " required
 
 
 " Remaps
-    let mapleader = "ø"
+    let mapleader = " "
+    nnoremap <Space> <Nop>
 
     " Shortcutting split navigation, saving a keypress:
     map <C-h> <C-w>h
     map <C-j> <C-w>j
     map <C-k> <C-w>k
     map <C-l> <C-w>l
-    nmap L :tabnext<Enter>
-    nmap H :tabprevious<Enter>
+
+    " Tabs
+    nmap <silent>L :tabnext<Return>
+    nmap <silent>H :tabprevious<Return>
+    map <Leader>t :tabnew<Return>
+    " map <silent><C-L> :+tabmove<Return> " Ctrl + Shift not recognized
+    " map <silent><C-H> :-tabmove<Return>
 
     nmap <silent><Esc> :noh<Return>
-    map <Leader>t :tabnew<Enter>
-    map <Leader>l :tabnext<Enter>
-    map <Leader>h :tabprevious<Enter>
-    map <Leader>L :+tabmove<Enter>
-    map <Leader>H :-tabmove<Enter>
-    map <Leader>q :q<Enter>
-    map <Leader>Q :qa<Enter>
-    map <Leader>p :put+<Enter>
-    map <Leader>y "+y<Enter>
-    map <Leader>Y :%y+<Enter>
-    " noremap <Leader>| :tabnew ~/.vimrc<Enter>
-    map <Leader>§ :so ~/.vimrc<Enter>
+    map <Leader>q :q<Return>
+    map <Leader>Q :qa<Return>
+    map <Leader>p :put+<Return>
+    map <Leader>y "+y<Return>
+    map <Leader>Y :%y+<Return>
+    " noremap <Leader>| :tabnew ~/.vimrc<Return>
+    map <Leader>§ :so ~/.vimrc<Return>
+    map <Leader>e :Explore<Return>
+
+    " Search and replace word under cursor
+    nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
     " Neovim terminal Escape-key fix
     nnoremap <C-t> <C-]>
@@ -173,14 +183,13 @@ filetype plugin indent on    " required
 
 
 
-" Elm settings
-    " elm-format on write
-    augroup elmformat
-        autocmd Bufread *.elm setlocal autoread
-        autocmd BufWritePost,FileWritePost *.elm silent !elm-format --yes <afile>
-        autocmd BufWritePost,FileWritePost *.elm silent e
-    augroup end
+" Netrw settings
+    let g:netrw_banner = 0
+    let g:netrw_liststyle = 3 " Tree view
 
+
+
+" Elm settings
     " LanguageServer
     let g:LanguageClient_serverCommands = {
                 \ 'elm': ['elm-language-server', '--stdio'],
@@ -192,21 +201,57 @@ filetype plugin indent on    " required
 
 
 
+" Javascript and Typescript settings
+    au Filetype javascript,typescript,*react set shiftwidth=2
+    au Filetype javascriptreact call UltiSnips#AddFiletypes('javascript')
+    au Filetype typescriptreact call UltiSnips#AddFiletypes('typescript')
+
+
+
+" Maude setttings
+    au BufNewFile,BufRead *.maude setfiletype maude
+
+
+
 " Custom 'snippets'
     autocmd Filetype java,c inoremap <M-CR> <CR>{<CR>}<Esc>O
     autocmd Filetype javascript inoremap <M-CR> {<CR>}<Esc>O
 
+
+
 " JavaComplete2 settings
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+
 
 " Easytags
     let g:easytags_async=1
     let g:easytags_always_enabled=1
 
+
+
 " Deoplete
     let g:deoplete#enable_at_startup = 1
     call deoplete#custom#source('ale', 'rank', 999)
+    call deoplete#custom#source('ultisnips', 'rank', 1000)
+
+
+
+" Ale
+    let g:ale_fixers = {
+                \'javascript': ['prettier', 'eslint'],
+                \'typescript': ['prettier', 'tslint'],
+                \'typescriptreact': ['prettier', 'tslint'],
+                \'javascriptreact': ['prettier', 'eslint'],
+                \'css': ['prettier', 'eslint'],
+                \'scss': ['prettier', 'eslint'],
+                \'elm': ['elm-format']
+                \}
+    let g:ale_fix_on_save = 1
+    let g:airline#extensions#ale#enabled = 1
     " let g:ale_completion_enabled = 0
+
+
 
 " UltiSnip settings
     " Trigger configuration. Do not use <tab> if you use
@@ -218,8 +263,3 @@ filetype plugin indent on    " required
     let g:UltiSnipsEditSplit="vertical"
     let g:ultisnips_java_brace_style="nl"
     let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips", "UltiSnips"]
-
-    call deoplete#custom#source('ultisnips', 'rank', 1000)
-
-" Detect Maude files
-    au BufNewFile,BufRead *.maude setfiletype maude
