@@ -5,16 +5,21 @@ SAVEHIST=20000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/magnus/.zshrc'
+# zstyle :compinstall filename '/home/magnus/.zshrc'
 
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit
 # End of lines added by compinstall
 
 PROMPT='%B%F{red}%n %F{blue}%2~ %F{white}$ %F{default}%b'
 setopt AUTO_LIST
 setopt MENU_COMPLETE
 
+export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+export LESS=" -R "
+export EDITOR=nvim
+
+alias vim=nvim
 alias py="python3"
 alias vrc="vim ~/.vimrc"
 alias zrc="vim ~/.zshrc"
@@ -29,17 +34,8 @@ alias scheme='racket -I "r5rs/init"'
 alias ll='ls -lAh'
 alias code=codium
 alias cdr='cd -P $PWD'
-alias ls='ls --color'
+alias ls='ls -G'
 alias maude='/usr/local/share/maude2.7.1/maude.linux64'
-
-PATH_TO_FX="/usr/local/share/javafx-sdk-11.0.2/lib"
-alias javafxc="javac --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml"
-alias javafx="java --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml"
 
 setopt auto_cd
 cdpath=($HOME/Snarveier)
-
-CLASSPATH='.:'$PATH_TO_FX
-
-# . ~/Dokumenter/uio-informatikk/IN3110/Obliger/2/climb.sh
-. ~/Scripts/climb.sh
