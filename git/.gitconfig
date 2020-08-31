@@ -1,3 +1,17 @@
 [user]
-	email = magnusmbratteng@me.com
-	name = Magnus Myhrvold Bratteng
+    email = magnusmbratteng@me.com
+    name = Magnus Myhrvold Bratteng
+
+[alias]
+    s = status
+    ss = status -s -b
+    a = add --update
+    ac = add --all
+    ap = add --patch
+    c = commit -m
+    ce = commit
+    ca = commit --amend
+    d = diff
+    ds = diff --staged
+    l = log --oneline
+    lp = log --all --decorate --oneline --graph
