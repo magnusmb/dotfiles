@@ -19,6 +19,8 @@ export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 export EDITOR=nvim
 
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 alias vim=nvim
 alias py="python3"
 alias vrc="vim ~/.vimrc"
@@ -39,3 +41,5 @@ alias maude='/usr/local/share/maude2.7.1/maude.linux64'
 
 setopt auto_cd
 cdpath=($HOME/Snarveier)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
