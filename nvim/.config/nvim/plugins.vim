@@ -28,6 +28,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'deoplete-plugins/deoplete-tag'
@@ -45,7 +46,7 @@ Plug 'neomake/neomake'
 Plug 'dense-analysis/ale', { 'for': 'haskell' }
 
 " Typescript and React
-Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascriptreact', 'typescriptreact'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascriptreact', 'typescriptreact', 'react'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescriptreact'] }
 
 " HTML
@@ -57,13 +58,16 @@ Plug 'andys8/vim-elm-syntax', { 'for': 'elm' }
 " Maude
 Plug 'ReedOei/vim-maude', { 'for': 'maude' }
 
+" Haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+
+" Rust
+Plug 'rust-lang/rust.vim'
+
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Haskell
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
 call plug#end()              " required
 filetype plugin indent on    " required

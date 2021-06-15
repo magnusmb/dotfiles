@@ -59,20 +59,6 @@ source ~/.config/nvim/plugins.vim
         set termguicolors
     endif
 
-    if has("gui_running")
-      set lines=60 columns=90
-      " set guioptions-=m
-      set guioptions-=T
-      set guioptions-=r
-      set guioptions-=L
-      set backspace=2
-      if has("x11")
-        set guifont=DejaVu\ Sans\ Mono\ 11
-      else
-        set guifont=DejaVu_Sans_Mono:h11:cANSI:qDRAFT
-      endif
-    endif
-
 " Enable autocompletion:
     set wildmode=longest,list,full
 
@@ -84,6 +70,9 @@ source ~/.config/nvim/plugins.vim
 
 " Automatically deletes all tralling whitespace on save.
     autocmd BufWritePre * %s/\s\+$//e
+
+" Filetype specific indent settings
+    autocmd FileType json,html,xml,css,scss,javascript,typescript,javascriptreact,typescriptreact setlocal shiftwidth=2
 
 " Remaps
 
@@ -141,12 +130,25 @@ if has_key(g:plugs, 'coc.nvim')
     " Show documentation in preview window
     nnoremap <silent> <leader>qd :call <SID>show_documentation()<CR>
 
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocAction('doHover')
+        endif
+    endfunction
+
     " Use <c-space> to trigger completion.
     if has('nvim')
-        inoremap <silent><expr> <c-space> coc#refresh()
+        inoremap <silent><expr> <c-y> coc#refresh()
     else
         inoremap <silent><expr> <c-@> coc#refresh()
     endif
+endif
+
+if has_key(g:plugs, 'rust.vim')
+    let g:rustfmt_autosave = 1
+    let g:rustfmt_command = 'rustfmt +nightly'
 endif
 
 " Netrw settings
@@ -164,7 +166,7 @@ endif
         \ }
 
 " Javascript and Typescript settings
-    au Filetype javascript,typescript,*react set shiftwidth=2
+    au Filetype javascript,typescript,*react setlocal shiftwidth=2
     au Filetype javascriptreact call UltiSnips#AddFiletypes('javascript')
     au Filetype typescriptreact call UltiSnips#AddFiletypes('typescript')
 

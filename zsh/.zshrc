@@ -19,8 +19,6 @@ export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 export EDITOR=nvim
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 alias vim=nvim
 alias py="python3"
 alias vrc="vim ~/.vimrc"
@@ -42,4 +40,29 @@ alias maude='/usr/local/share/maude2.7.1/maude.linux64'
 setopt auto_cd
 cdpath=($HOME/Snarveier)
 
+fpath=(~/.config/zsh $fpath)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.config/zsh/git-completion.bash ] && source ~/.config/zsh/git-completion.bash
+export PATH="/usr/local/opt/openjdk/bin:/Users/magnus/.local/bin:$PATH"
+[ -f "/Users/magnus/.ghcup/env" ] && source "/Users/magnus/.ghcup/env" # ghcup-env
+
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

@@ -1,0 +1,33 @@
+{
+  "java.trace.server": "verbose",
+  "java.format.settings.url": "/Users/magnus/Kode/asp-interpreter/allman-formatter.xml",
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "haskell",
+    "json",
+    "css",
+    "scss",
+    "javascriptreact",
+    "typescriptreact",
+    "javascriptreact",
+    "markdownreact",
+    "markdown",
+    "typescript",
+    "javascript",
+    "python"
+  ],
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+  }
+}
