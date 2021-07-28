@@ -7,8 +7,9 @@ bindkey -v
 # The following lines were added by compinstall
 # zstyle :compinstall filename '/home/magnus/.zshrc'
 
-# autoload -Uz compinit
-# compinit
+autoload -U compinit && compinit
+fpath=(~/.config/zsh $fpath)
+zmodload -i zsh/complist
 # End of lines added by compinstall
 
 PROMPT='%B%F{red}%n %F{blue}%2~ %F{white}$ %F{default}%b'
@@ -40,9 +41,8 @@ alias maude='/usr/local/share/maude2.7.1/maude.linux64'
 setopt auto_cd
 cdpath=($HOME/Snarveier)
 
-fpath=(~/.config/zsh $fpath)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# [ -f ~/.config/zsh/git-completion.bash ] && source ~/.config/zsh/git-completion.bash
+# [ -f ~/.config/zsh/git-completion.zsh ] && source ~/.config/zsh/git-completion.zsh
 export PATH="/usr/local/opt/openjdk/bin:/Users/magnus/.local/bin:$PATH"
 [ -f "/Users/magnus/.ghcup/env" ] && source "/Users/magnus/.ghcup/env" # ghcup-env
 
