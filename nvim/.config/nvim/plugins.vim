@@ -37,12 +37,13 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'Raimondi/delimitMate'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'antoinemadec/coc-fzf'
 Plug 'dyng/ctrlsf.vim'
 
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
 " Syntax checking
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 Plug 'dense-analysis/ale', { 'for': 'haskell' }
 
 " Typescript and React
@@ -63,6 +64,15 @@ Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
 " Rust
 Plug 'rust-lang/rust.vim'
+
+" GraphQL
+Plug 'jparise/vim-graphql'
+
+" Kotlin
+Plug 'udalov/kotlin-vim'
+
+" Terraform
+Plug 'hashivim/vim-terraform'
 
 " Themes
 Plug 'chriskempson/base16-vim'
