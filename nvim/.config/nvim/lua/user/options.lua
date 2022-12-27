@@ -39,3 +39,5 @@ vim.opt.fillchars.eob=" "                       -- show empty lines at the end o
 vim.opt.shortmess:append "c"                    -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 vim.opt.whichwrap:append("<,>,[,],h,l")         -- keys allowed to move to the previous/next line when the beginning/end of line is reached
 vim.opt.iskeyword:append("-")                   -- treats words with `-` as single words
+-- vim.opt_global.node_host_prog = "/Users/magnus/.nvm/versions/node/v18.12.0/bin/node"
+vim.cmd [[ let $PATH = "/Users/magnus/.nvm/versions/node/v14.21.0/bin:" . $PATH ]]

@@ -69,3 +69,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		vim.cmd("hi link illuminatedWord LspReferenceText")
 	end,
 })
+
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+

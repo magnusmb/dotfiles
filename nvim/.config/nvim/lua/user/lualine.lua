@@ -37,6 +37,23 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local filepath = function()
+  local path = vim.fn.expand('%')
+  if vim.fn.winwidth(0) <= 84 then
+    path = vim.fn.pathshorten(path)
+  end
+  return path
+end
+
+local fileformat = {
+  "fileformat",
+  symbols = {
+    unix = "unix",
+    dos = "dos",
+    mac = "mac",
+  }
+}
+
 lualine.setup {
   options = {
     globalstatus = true,
@@ -49,9 +66,9 @@ lualine.setup {
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = {"branch", diff, diagnostics },
-    lualine_c = { "filename" },
-    lualine_x = { spaces, "encoding", "fileformat", filetype },
+    lualine_b = {"branch", diagnostics },
+    lualine_c = { filepath },
+    lualine_x = { spaces, "encoding", fileformat, filetype },
     lualine_y = { location },
     lualine_z = { "progress" },
   },
