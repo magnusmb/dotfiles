@@ -45,4 +45,7 @@ return require("packer").startup(function(use)
       { "rafamadriz/friendly-snippets" },
     },
   })
+
+  use({ 'numToStr/Comment.nvim' })
+  use({ 'JoosepAlviste/nvim-ts-context-commentstring' })
 end)
