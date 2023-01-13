@@ -1,3 +1,5 @@
+vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v14.21.0/bin:" . $PATH')
+
 require("magnusmb.packer")
 require("magnusmb.set")
 
@@ -23,5 +25,3 @@ function map_category(prefix, name)
 end
 
 require("magnusmb.remaps")
-
-vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v14.21.0/bin:" . $PATH')
