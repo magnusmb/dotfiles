@@ -16,7 +16,6 @@ PROMPT='%B%F{red}%n %F{blue}%2~ %F{white}$ %F{default}%b'
 setopt AUTO_LIST
 setopt MENU_COMPLETE
 
-export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 export EDITOR=nvim
 
@@ -27,11 +26,6 @@ alias zrc="vim ~/.zshrc"
 alias zsc="source ~/.zshrc"
 alias trc="vim ~/.tmux.conf"
 alias gitadog="git log --all --decorate --oneline --graph"
-alias nat="nautilus --browser ."
-alias jr="~/Scripts/javar.sh"
-alias nodei="~/Scripts/nodei.sh"
-alias mkemne="~/Scripts/mkemne.sh"
-alias scheme='racket -I "r5rs/init"'
 alias ll='ls -lAh'
 alias code=codium
 alias cdr='cd -P $PWD'
@@ -46,23 +40,8 @@ cdpath=($HOME/Snarveier)
 export PATH="/usr/local/opt/openjdk/bin:/Users/magnus/.local/bin:$PATH"
 [ -f "/Users/magnus/.ghcup/env" ] && source "/Users/magnus/.ghcup/env" # ghcup-env
 
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+export XDG_CONFIG_HOME="$HOME/.config"
