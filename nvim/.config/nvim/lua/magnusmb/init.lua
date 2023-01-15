@@ -15,5 +15,32 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Needs to be loaded before Lazy so plugins use correct leader key
 require("magnusmb.base")
-require("lazy").setup("plugins", { install = { colorscheme = { "onenord" } } })
+require("lazy").setup("plugins", {
+	install = { colorscheme = { "onenord" } },
+	ui = {
+		icons = {
+			cmd = "cmd ",
+			config = "config",
+			event = "event",
+			ft = "filetype",
+			init = "init ",
+			import = " ",
+			keys = "keys ",
+			lazy = " ",
+			loaded = "●",
+			not_loaded = "○",
+			plugin = "plugin",
+			runtime = " ",
+			source = "source",
+			start = "",
+			task = "✔ ",
+			list = {
+				"●",
+				"➜",
+				"★",
+				"‒",
+			},
+		},
+	},
+})
 require("magnusmb.remaps")
