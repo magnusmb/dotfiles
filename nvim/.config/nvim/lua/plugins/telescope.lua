@@ -10,15 +10,16 @@ return {
 
 		local builtin = require("telescope.builtin")
 
-		Map_category("<leader>f", "Find")
-		Remap("n", "<leader>ff", builtin.find_files, {}, "Files")
-		Remap("n", "<leader>fF", builtin.live_grep, {}, "Text")
-		Remap("n", "<leader>fb", builtin.buffers, {}, "Buffers")
-		Remap("n", "<leader>fh", builtin.help_tags, {}, "Help tags")
-		Remap("n", "<leader>fr", builtin.oldfiles, {}, "Recent files")
-		Remap("n", "<leader>fp", extensions.projects.projects, {}, "Recent files")
+		Remap("n", "<leader>f", builtin.find_files, {}, "Find file")
+		Remap("n", "<leader>F", builtin.live_grep, {}, "Grep text")
 
-		Remap("n", "<leader>gb", builtin.git_branches, {}, "Branches")
-		Remap("n", "<leader>gc", builtin.git_commits, {}, "Branches")
+		Map_category("<leader>s", "Search")
+		Remap("n", "<leader>sb", builtin.buffers, {}, "Buffers")
+		Remap("n", "<leader>sh", builtin.help_tags, {}, "Help tags")
+		Remap("n", "<leader>sr", builtin.oldfiles, {}, "Recent files")
+		Remap("n", "<leader>sp", extensions.projects.projects, {}, "Projects")
+
+		Remap("n", "<leader>sB", builtin.git_branches, {}, "Branches")
+		Remap("n", "<leader>sc", builtin.git_commits, {}, "Commits")
 	end,
 }

@@ -1,5 +1,15 @@
 vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v14.21.0/bin:" . $PATH')
 
+function Remap(mode, keys, command, opts, description)
+	if description == nil then
+		vim.keymap.set(mode, keys, command, opts)
+		return
+	end
+
+	opts.desc = description
+	vim.keymap.set(mode, keys, command, opts)
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -41,6 +51,9 @@ require("lazy").setup("plugins", {
 				"‒",
 			},
 		},
+	},
+	change_detection = {
+		notify = false,
 	},
 })
 require("magnusmb.remaps")

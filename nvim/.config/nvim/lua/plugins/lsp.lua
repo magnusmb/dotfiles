@@ -81,11 +81,8 @@ return { -- LSP
 			Map_category("<leader>l", "Lsp")
 			Remap("n", "<leader>la", vim.lsp.buf.code_action, opts, "Code action")
 			Remap("n", "<leader>ld", vim.diagnostic.open_float, opts, "Diagnostics (floating window)")
-			Remap("n", "<leader>lr", vim.lsp.buf.references, opts, "References")
-			Remap("n", "<leader>lR", vim.lsp.buf.rename, opts, "Rename")
-
-			Map_category("<leader>lw", "Workspace")
-			Remap("n", "<leader>lws", vim.lsp.buf.workspace_symbol, opts, "Workspace")
+			Remap("n", "<leader>lr", vim.lsp.buf.rename, opts, "Rename")
+			Remap("n", "<leader>lR", vim.lsp.buf.references, opts, "References")
 		end)
 
 		lsp.nvim_workspace()

@@ -44,6 +44,7 @@ return {
 				opts = opts,
 			}
 		end
+
 		dashboard.section.header.val = {
 			[[      ::::    ::: :::::::::: ::::::::  :::     ::: :::::::::::   :::   :::]],
 			[[     :+:+:   :+: :+:       :+:    :+: :+:     :+:     :+:      :+:+: :+:+:]],
@@ -53,15 +54,18 @@ return {
 			[[ #+#   #+#+# #+#       #+#    #+#   #+#+#+#       #+#     #+#       #+#   ]],
 			[[###    #### ########## ########      ###     ########### ###       ###    ]],
 		}
+
 		dashboard.section.buttons.val = {
 			button("f", "" .. " Find file", ":Telescope find_files <CR>"),
 			button("e", "" .. " New file", ":ene <BAR> startinsert <CR>"),
 			button("p", "" .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
 			button("r", "" .. " Recent files", ":Telescope oldfiles <CR>"),
 			button("t", "" .. " Find text", ":Telescope live_grep <CR>"),
+			button("l", "" .. " Lazy", ":Lazy<CR>"),
 			button("c", "" .. " Config", ":e $XDG_CONFIG_HOME/nvim/init.lua <CR>"),
 			button("q", "" .. " Quit", ":qa<CR>"),
 		}
+
 		-- local function footer()
 		--   return ""
 		-- end

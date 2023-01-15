@@ -1,25 +1,13 @@
 return {
 	"folke/which-key.nvim",
+	priority = 500,
 	config = function()
-		function Remap(mode, keys, command, opts, description)
-			if description == nil then
-				vim.keymap.set(mode, keys, command, opts)
-				return
-			end
-
-			local opts_with_mode = {}
-			for k, v in pairs(opts) do
-				opts_with_mode[k] = v
-			end
-			opts_with_mode.mode = mode
-
+		---Create a keybind directory for which-key
+		---@param prefix string
+		---@param label string
+		function Map_category(prefix, label)
 			local wk = require("which-key")
-			wk.register({ [keys] = { command, description } }, opts_with_mode)
-		end
-
-		function Map_category(prefix, name)
-			local wk = require("which-key")
-			wk.register({ [prefix] = { name = name } })
+			wk.register({ [prefix] = { name = label } })
 		end
 
 		require("which-key").setup({
@@ -27,7 +15,7 @@ return {
 				height = { min = 4, max = 25 }, -- min and max height of the columns
 				width = { min = 20, max = 50 }, -- min and max width of the columns
 				spacing = 3, -- spacing between columns
-				align = "left", -- align columns left, center or right
+				align = "center", -- align columns left, center or right
 			},
 			ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
 		})
