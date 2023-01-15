@@ -78,5 +78,7 @@ return {
 		--
 		-- dashboard.opts.opts.noautocmd = true
 		alpha.setup(dashboard.opts)
+
+		Remap("n", "<leader>a", ":Alpha<CR>", {}, "Alpha Dashboard")
 	end,
 }
