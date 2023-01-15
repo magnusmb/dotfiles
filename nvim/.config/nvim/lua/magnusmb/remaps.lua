@@ -6,6 +6,10 @@ local opts = { silent = true }
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 
+-- Ignore line wraps when going up or down a line
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
