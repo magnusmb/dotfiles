@@ -36,7 +36,7 @@ vim.opt.cursorline = true -- highlight the current line
 vim.opt.number = true -- set numbered lines
 vim.wo.relativenumber = true
 
-vim.opt.laststatus = 3 -- only the last window will always have a status line
+vim.opt.laststatus = 2 -- only the last window will always have a status line
 vim.opt.showcmd = false -- hide (partial) command in the last line of the screen (for performance)
 vim.opt.numberwidth = 4 -- minimal number of columns to use for the line number {default 4}
 vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
