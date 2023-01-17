@@ -12,7 +12,11 @@ fpath=(~/.config/zsh $fpath)
 zmodload -i zsh/complist
 # End of lines added by compinstall
 
-PROMPT='%B%F{red}%n %F{blue}%2~ %F{white}$ %F{default}%b'
+local user='%B%F{black}%K{green} %n %b%f%k'
+local location='%B%F{black}%K{blue} %2~ %b%f%k'
+local return_code='%B%(?..%F{black}%K{red} e%? %b%f%k)'
+PROMPT_SUBST=true
+PROMPT="$user$location$return_code%F{white}%K{black} %(!.#.>) %f%k%b "
 setopt AUTO_LIST
 setopt MENU_COMPLETE
 
