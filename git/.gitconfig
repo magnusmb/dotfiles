@@ -15,6 +15,7 @@
     ds = diff --staged
     l = log --oneline
     lp = log --all --decorate --oneline --graph
+    sw = "!f() {  git switch $(git branch | fzf | sed 's/  |* //') ;}; f"
 [core]
 	excludesfile = /Users/magnus/.gitignore_global
 [difftool "sourcetree"]
