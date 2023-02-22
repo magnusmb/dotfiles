@@ -18,7 +18,7 @@ return { -- LSP
 		lsp.ensure_installed({
 			"tsserver",
 			"eslint",
-			"sumneko_lua",
+			-- "sumneko_lua",
 		})
 
 		lsp.set_preferences({

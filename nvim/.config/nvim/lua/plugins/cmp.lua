@@ -1,19 +1,26 @@
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
+		-- Treesitter
+		"nvim-treesitter/nvim-treesitter",
+
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-nvim-lua",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 
 		-- Snippets
 		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets",
 
 		-- Emmet
 		"dcampos/cmp-emmet-vim",
 		"mattn/emmet-vim",
+
+		-- Copilot
+		"zbirenbaum/copilot.lua",
+		"zbirenbaum/copilot-cmp",
 	},
 	config = function()
 		vim.opt.completeopt = "menu,menuone,noselect"
@@ -40,10 +47,11 @@ return {
 			formatting = {
 				format = function(entry, vim_item)
 					vim_item.menu = ({
+						copilot = "[Copilot]",
 						emmet_vim = "[Emmet]",
-						buffer = "[Buffer]",
-						nvim_lsp = "[Lsp]",
 						luasnip = "[LuaSnip]",
+						nvim_lsp = "[Lsp]",
+						buffer = "[Buffer]",
 						path = "[Path]",
 					})[entry.source.name]
 					return vim_item
@@ -51,12 +59,28 @@ return {
 			},
 			view = { entries = { name = "custom", selection_order = "near_cursor" } },
 			sources = {
-				{ name = "emmet_vim" },
+				{
+					name = "emmet_vim",
+					-- entry_filter = function()
+					-- 	-- enable only in JSX context
+					-- 	local context = require("cmp.config.context")
+					-- 	return context.in_treesitter_capture("jsx_text")
+					-- end,
+				},
+				{ name = "copilot" },
 				{ name = "luasnip" },
-				{ name = "nvim_lsp" },
-				{ name = "buffer" },
+				{ name = "nvim_lsp", keyword_length = 3 },
+				{ name = "buffer", keyword_length = 3 },
 				{ name = "path" },
 			},
+		})
+
+		-- If you want insert `(` after select function or method item
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+		require("copilot_cmp").setup({
+			method = "getCompletionsCycling",
 		})
 	end,
 }
