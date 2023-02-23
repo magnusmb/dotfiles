@@ -10,6 +10,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
+		"windwp/nvim-autopairs",
 
 		-- Snippets
 		"L3MON4D3/LuaSnip",
@@ -42,7 +43,7 @@ return {
 				["<M-k>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
 				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 				["<C-y>"] = cmp.config.disable,
-				["<Tab>"] = cmp.mapping.confirm({ select = true }),
+				["<Tab>"] = cmp.mapping.confirm({ behvior = cmp.ConfirmBehavior.Replace, select = true }),
 			}),
 			formatting = {
 				format = function(entry, vim_item)
@@ -73,11 +74,26 @@ return {
 				{ name = "buffer", keyword_length = 3 },
 				{ name = "path" },
 			},
-		})
+			sorting = {
+				priority_weight = 2,
+				comparators = {
+					require("copilot_cmp.comparators").prioritize,
+					require("copilot_cmp.comparators").score,
 
-		-- If you want insert `(` after select function or method item
-		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+					-- Below is the default comparitor list and order for nvim-cmp
+					cmp.config.compare.offset,
+					-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+					cmp.config.compare.exact,
+					cmp.config.compare.score,
+					cmp.config.compare.recently_used,
+					cmp.config.compare.locality,
+					cmp.config.compare.kind,
+					cmp.config.compare.sort_text,
+					cmp.config.compare.length,
+					cmp.config.compare.order,
+				},
+			},
+		})
 
 		require("copilot_cmp").setup({
 			method = "getCompletionsCycling",
