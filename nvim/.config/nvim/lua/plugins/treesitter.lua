@@ -2,6 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
 		"nvim-treesitter/playground",
+		"ziontee113/syntax-tree-surfer",
 	},
 	build = ":TSUpdate",
 	config = function()
@@ -32,10 +33,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "gnn", -- set to `false` to disable one of the mappings
-					node_incremental = "grn",
-					node_decremental = "grm",
-					scope_incremental = "grc",
+					init_selection = false,
+					node_incremental = false,
+					node_decremental = false,
+					scope_incremental = false,
 				},
 			},
 			indent = {
@@ -60,5 +61,51 @@ return {
 				},
 			},
 		})
+		-- Syntax Tree Surfer
+		require("syntax-tree-surfer").setup({})
+
+		-- local opts = { silent = true, expr = true }
+		--
+		-- -- Normal Mode Swapping:
+		-- -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
+		-- Remap("n", "vU", function()
+		-- 	vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+		-- 	return "g@l"
+		-- end, opts, "Backward swap master node")
+		-- Remap("n", "vD", function()
+		-- 	vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+		-- 	return "g@l"
+		-- end, opts, "Forward swap master node")
+		--
+		-- -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
+		-- Remap("n", "vd", function()
+		-- 	vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
+		-- 	return "g@l"
+		-- end, opts, "Backwards swap current node")
+		-- Remap("n", "vu", function()
+		-- 	vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
+		-- 	return "g@l"
+		-- end, opts, "Forward swap current node")
+
+		opts = { noremap = true, silent = true }
+		--> If the mappings above don't work, use these instead (no dot repeatable)
+		-- Remap("n", "vd", '<cmd>STSSwapCurrentNodeNextNormal<cr>', opts)
+		-- Remap("n", "vu", '<cmd>STSSwapCurrentNodePrevNormal<cr>', opts)
+		-- Remap("n", "vD", '<cmd>STSSwapDownNormal<cr>', opts)
+		-- Remap("n", "vU", '<cmd>STSSwapUpNormal<cr>', opts)
+
+		-- Visual Selection from Normal Mode
+		Remap("n", "gS", "<cmd>STSSelectMasterNode<cr>", opts, "Select master node")
+		Remap("n", "gs", "<cmd>STSSelectCurrentNode<cr>", opts, "Select current node")
+
+		-- Select Nodes in Visual Mode
+		Remap("x", "H", "<cmd>STSSelectPrevSiblingNode<cr>", opts, "Select previous sibling")
+		Remap("x", "L", "<cmd>STSSelectNextSiblingNode<cr>", opts, "Select next sibling")
+		Remap("x", "<C-n>", "<cmd>STSSelectParentNode<cr>", opts, "Select parent node")
+		Remap("x", "<C-p>", "<cmd>STSSelectChildNode<cr>", opts, "Select child node")
+
+		-- Swapping Nodes in Visual Mode
+		Remap("x", "<C-j>", "<cmd>STSSwapNextVisual<cr>", opts, "Forward swap master node")
+		Remap("x", "<C-k>", "<cmd>STSSwapPrevVisual<cr>", opts, "Backward swap master node")
 	end,
 }
