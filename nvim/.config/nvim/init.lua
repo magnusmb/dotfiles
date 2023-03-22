@@ -1,4 +1,4 @@
-vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v14.21.0/bin:" . $PATH')
+vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v18.14.2/bin:" . $PATH')
 
 function Remap(mode, keys, command, opts, description)
 	if description == nil then
