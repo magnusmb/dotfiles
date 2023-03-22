@@ -55,7 +55,7 @@ return { -- LSP
 			Remap("n", "<leader>la", vim.lsp.buf.code_action, opts, "Code action")
 			Remap("n", "<leader>ld", vim.diagnostic.open_float, opts, "Diagnostics (floating window)")
 			Remap("n", "<leader>lr", vim.lsp.buf.rename, opts, "Rename")
-			Remap("n", "<leader>lR", vim.lsp.buf.references, opts, "References")
+			Remap("n", "<leader>gr", vim.lsp.buf.references, opts, "References")
 		end)
 
 		lsp.nvim_workspace()
