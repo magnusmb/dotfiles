@@ -14,9 +14,13 @@ return {
 		Remap("n", "<leader>F", builtin.live_grep, {}, "Grep text")
 
 		Map_category("<leader>s", "Search")
-		Remap("n", "<leader>sb", builtin.buffers, {}, "Buffers")
+		Remap("n", "<leader>sB", builtin.buffers, {}, "Buffers")
 		Remap("n", "<leader>sh", builtin.help_tags, {}, "Help tags")
 		Remap("n", "<leader>sr", builtin.oldfiles, {}, "Recent files")
+		Remap("n", "<leader>sk", builtin.keymaps, {}, "Keymaps")
+		Remap("n", "<leader>sb", builtin.git_branches, {}, "Git branches")
+		Remap("n", "<leader>sgc", builtin.git_branches, {}, "Git commits")
+		Remap("n", "<leader>sgb", builtin.git_branches, {}, "Git commits for current buffer")
 		Remap("n", "<leader>sp", extensions.projects.projects, {}, "Projects")
 
 		Remap("n", "<leader>sB", builtin.git_branches, {}, "Branches")
