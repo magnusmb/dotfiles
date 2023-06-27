@@ -95,8 +95,8 @@ return {
 		-- Remap("n", "vU", '<cmd>STSSwapUpNormal<cr>', opts)
 
 		-- Visual Selection from Normal Mode
-		Remap("n", "gS", "<cmd>STSSelectMasterNode<cr>", opts, "Select master node")
 		Remap("n", "gs", "<cmd>STSSelectCurrentNode<cr>", opts, "Select current node")
+		Remap("n", "gS", "<cmd>STSSelectMasterNode<cr>", opts, "Select master node")
 
 		-- Select Nodes in Visual Mode
 		Remap("x", "H", "<cmd>STSSelectPrevSiblingNode<cr>", opts, "Select previous sibling")
