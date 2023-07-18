@@ -19,6 +19,9 @@ return {
 		"dcampos/cmp-emmet-vim",
 		"mattn/emmet-vim",
 
+		-- Tailwind
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+
 		-- Copilot
 		"zbirenbaum/copilot.lua",
 		"zbirenbaum/copilot-cmp",
@@ -28,6 +31,10 @@ return {
 
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+
+		-- require("tailwindcss-colorizer-cmp").setup({
+		-- 	color_square_width = 1,
+		-- })
 
 		cmp.setup({
 			experimental = { ghost_text = true },
@@ -55,6 +62,11 @@ return {
 						buffer = "[Buffer]",
 						path = "[Path]",
 					})[entry.source.name]
+
+					local tail_col_cmp_ok, tailwindcss_colorizer_cmp = pcall(require, "tailwindcss-colorizer-cmp")
+					if tail_col_cmp_ok then
+						vim_item.before = tailwindcss_colorizer_cmp.formatter(entry, vim_item)
+					end
 					return vim_item
 				end,
 			},

@@ -9,6 +9,8 @@ return { -- LSP
 		-- Autocompletion
 		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-nvim-lsp",
+
+		"themaxmarchuk/tailwindcss-colors.nvim",
 	},
 	config = function()
 		vim.opt.signcolumn = "yes" -- Reserve space for diagnostic icons
@@ -40,10 +42,7 @@ return { -- LSP
 		lsp.on_attach(function(client, bufnr)
 			local opts = { buffer = bufnr, remap = false }
 
-			-- if client.name == "eslint" then
-			--   vim.cmd.LspStop("eslint")
-			--   return
-			-- end
+			require("tailwindcss-colors").buf_attach(bufnr)
 
 			Remap("n", "gd", vim.lsp.buf.definition, opts)
 			Remap("n", "K", vim.lsp.buf.hover, opts)
