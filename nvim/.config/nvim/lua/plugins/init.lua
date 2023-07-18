@@ -10,6 +10,7 @@ return {
 
 	"tpope/vim-fugitive",
 	"tpope/vim-surround",
+  "findango/vim-mdx",
 	{
 		"j-hui/fidget.nvim",
 		config = function()
