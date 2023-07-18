@@ -8,7 +8,7 @@ return {
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			-- A list of parser names, or "all"
-			ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust", "vim", "help" },
+			ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "vim" },
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
@@ -87,7 +87,7 @@ return {
 		-- 	return "g@l"
 		-- end, opts, "Forward swap current node")
 
-		opts = { noremap = true, silent = true }
+		local opts = { noremap = true, silent = true }
 		--> If the mappings above don't work, use these instead (no dot repeatable)
 		-- Remap("n", "vd", '<cmd>STSSwapCurrentNodeNextNormal<cr>', opts)
 		-- Remap("n", "vu", '<cmd>STSSwapCurrentNodePrevNormal<cr>', opts)
