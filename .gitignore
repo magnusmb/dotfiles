@@ -2,3 +2,5 @@ nvim/.config/coc
 nvim/.config/configstore
 nvim/.config/yarn
 nvim/.config/nvim/lazy-lock.json
+
+git/.config/git/local
