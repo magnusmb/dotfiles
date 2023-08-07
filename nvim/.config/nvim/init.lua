@@ -1,6 +1,6 @@
 vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v18.14.2/bin:" . $PATH')
 
-function Remap(mode, keys, command, opts, description)
+Remap = function(mode, keys, command, opts, description)
 	if description == nil then
 		vim.keymap.set(mode, keys, command, opts)
 		return
