@@ -21,10 +21,6 @@ return {
 
 		-- Tailwind
 		"roobert/tailwindcss-colorizer-cmp.nvim",
-
-		-- Copilot
-		"zbirenbaum/copilot.lua",
-		"zbirenbaum/copilot-cmp",
 	},
 	config = function()
 		vim.opt.completeopt = "menu,menuone,noselect"
@@ -55,7 +51,6 @@ return {
 			formatting = {
 				format = function(entry, vim_item)
 					vim_item.menu = ({
-						copilot = "[Copilot]",
 						emmet_vim = "[Emmet]",
 						luasnip = "[LuaSnip]",
 						nvim_lsp = "[Lsp]",
@@ -72,30 +67,25 @@ return {
 			},
 			view = { entries = { name = "custom", selection_order = "near_cursor" } },
 			sources = {
-				{
-					name = "emmet_vim",
-					-- entry_filter = function()
-					-- 	-- enable only in JSX context
-					-- 	local context = require("cmp.config.context")
-					-- 	return context.in_treesitter_capture("jsx_text")
-					-- end,
-				},
-				{ name = "copilot" },
 				{ name = "luasnip" },
 				{ name = "nvim_lsp", keyword_length = 3 },
 				{ name = "buffer", keyword_length = 3 },
 				{ name = "path" },
+				{
+					name = "emmet_vim",
+					entry_filter = function()
+						-- enable only in JSX context
+						local context = require("cmp.config.context")
+						return context.in_treesitter_capture("jsx_text")
+					end,
+				},
 			},
 			sorting = {
-				priority_weight = 2,
+				priority_weight = 1.0,
 				comparators = {
-					require("copilot_cmp.comparators").prioritize,
-					require("copilot_cmp.comparators").score,
-
-					-- Below is the default comparitor list and order for nvim-cmp
+					cmp.config.compare.exact,
 					cmp.config.compare.offset,
 					-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-					cmp.config.compare.exact,
 					cmp.config.compare.score,
 					cmp.config.compare.recently_used,
 					cmp.config.compare.locality,
@@ -105,10 +95,6 @@ return {
 					cmp.config.compare.order,
 				},
 			},
-		})
-
-		require("copilot_cmp").setup({
-			method = "getCompletionsCycling",
 		})
 	end,
 }
