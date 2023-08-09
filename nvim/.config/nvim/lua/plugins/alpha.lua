@@ -55,11 +55,15 @@ return {
 			[[###    #### ########## ########      ###     ########### ###       ###    ]],
 		}
 
+		local projects = "require('telescope').extensions.project.project()"
+		local git_dir = "vim.fn.trim(vim.fn.system('git rev-parse --show-toplevel'))"
+		local oldfiles = "require('telescope.builtin').oldfiles({ cwd = " .. git_dir .. " })"
+
 		dashboard.section.buttons.val = {
 			button("f", "" .. " Find file", ":Telescope find_files <CR>"),
 			button("e", "" .. " New file", ":ene <BAR> startinsert <CR>"),
-			button("p", "" .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
-			button("r", "" .. " Recent files", ":Telescope oldfiles <CR>"),
+			button("p", "" .. " Find project", ":lua " .. projects .. "<CR>"),
+			button("r", "" .. " Recent files", ":lua " .. oldfiles .. "<CR>"),
 			button("t", "" .. " Find text", ":Telescope live_grep <CR>"),
 			button("l", "" .. " Lazy", ":Lazy<CR>"),
 			button("c", "" .. " Config", ":e $XDG_CONFIG_HOME/nvim/init.lua <CR>"),
