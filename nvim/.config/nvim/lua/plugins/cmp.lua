@@ -23,9 +23,6 @@ return {
 		"roobert/tailwindcss-colorizer-cmp.nvim",
 	},
 	config = function()
-		Map_category("<leader>c", "Configs")
-		Remap("n", "<leader>cs", "<cmd> lua require('luasnip.loaders').edit_snippet_files({})<CR>", {}, "Edit snippets")
-
 		local cmp = require("cmp")
 		local types = require("cmp.types")
 
@@ -108,13 +105,14 @@ return {
 					keyword_length = 3,
 					entry_filter = function(entry, ctx)
 						-- enable only in JSX context
-						-- local context = require("cmp.config.context")
+						local context = require("cmp.config.context")
 						print(vim.inspect(entry))
 						print(vim.inspect(ctx))
+						print(vim.inspect(context))
 						print(entry:get_kind())
 						-- require("cmp.types").lsp.CompletionItemKind[entry:get_kind()]
 
-						return ctx.in_treesitter_capture("jsx_text")
+						return context.in_treesitter_capture("jsx_text")
 					end,
 				},
 			},
