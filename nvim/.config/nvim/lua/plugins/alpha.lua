@@ -72,16 +72,14 @@ return {
 
 		local status, lazy = pcall(require, "lazy")
 		if status then
-			local lazy_status = lazy.check({ show = false })
+			local lazy_status = lazy.check({ show = false }) or {}
+			-- dashboard.section.footer.val = lazy_status
 		end
-
-		lazy_status = lazy_status or {}
 
 		-- local function footer()
 		--   return ""
 		-- end
 		--
-		dashboard.section.footer.val = lazy_status
 		--
 		-- dashboard.section.footer.opts.hl = "Type"
 		-- dashboard.section.header.opts.hl = "Include"

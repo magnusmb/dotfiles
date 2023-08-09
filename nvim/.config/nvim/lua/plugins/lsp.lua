@@ -40,9 +40,9 @@ return { -- LSP
 		})
 
 		lsp.on_attach(function(client, bufnr)
-			local opts = { buffer = bufnr, remap = false }
-
 			require("tailwindcss-colors").buf_attach(bufnr)
+
+			local opts = { buffer = bufnr, remap = false }
 
 			Remap("n", "gd", vim.lsp.buf.definition, opts)
 			Remap("n", "K", vim.lsp.buf.hover, opts)
