@@ -34,7 +34,8 @@ alias ll='ls -lAh'
 alias code=codium
 alias cdr='cd -P $PWD'
 alias ls='ls -G'
-alias maude='/usr/local/share/maude2.7.1/maude.linux64'
+alias wgup='wg-quick up ~/Documents/Grammatistes/wg0.conf'
+alias wgdown='wg-quick down ~/Documents/Grammatistes/wg0.conf'
 
 setopt auto_cd
 cdpath=($HOME/Snarveier)
