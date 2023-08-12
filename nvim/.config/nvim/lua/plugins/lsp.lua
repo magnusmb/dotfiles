@@ -20,6 +20,8 @@ return { -- LSP
 		lsp.ensure_installed({
 			"tsserver",
 			"eslint",
+			"rust_analyzer",
+			"tailwindcss",
 			-- "sumneko_lua",
 		})
 
