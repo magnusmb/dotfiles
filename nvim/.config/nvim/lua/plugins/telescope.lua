@@ -1,13 +1,40 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	-- tag = "0.1.0",
-	-- or                            , branch = '0.1.x',
-	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim", "folke/which-key.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"ahmedkhalf/project.nvim",
+		"folke/which-key.nvim",
+	},
 	config = function()
 		local ts = require("telescope")
+		ts.setup({
+			defaults = {
+				vimgrep_arguments = {
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--trim",
+				},
+			},
+			pickers = {
+				find_files = {
+					find_command = {
+						"rg",
+						"--files",
+						"--hidden",
+						"--glob",
+						"!**/.git/*",
+					},
+				},
+			},
+		})
+
 		ts.load_extension("projects")
 		local extensions = ts.extensions
-
 		local builtin = require("telescope.builtin")
 
 		Remap("n", "<leader>f", builtin.find_files, {}, "Find file")
