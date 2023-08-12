@@ -7,8 +7,8 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 
 -- Ignore line wraps when going up or down a line
-keymap("n", "j", "gj", opts)
-keymap("n", "k", "gk", opts)
+keymap("n", "j", [[v:count ? "m'" . v:count . 'j' : 'gj']], { silent = true, expr = true })
+keymap("n", "k", [[v:count ? "m'" . v:count . 'k' : 'gk']], { silent = true, expr = true })
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

@@ -1,6 +1,6 @@
 vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v18.14.2/bin:" . $PATH')
 
-function Remap(mode, keys, command, opts, description)
+Remap = function(mode, keys, command, opts, description)
 	if description == nil then
 		vim.keymap.set(mode, keys, command, opts)
 		return
@@ -58,3 +58,17 @@ require("lazy").setup("plugins", {
 	},
 })
 require("magnusmb.remaps")
+
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local yank_group = augroup("HighlightYank", {})
+autocmd("TextYankPost", {
+	group = yank_group,
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 40,
+		})
+	end,
+})

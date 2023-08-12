@@ -16,11 +16,17 @@
     l = log --oneline
     lp = log --all --decorate --oneline --graph
     sw = "!f() {  git switch $(git branch | fzf | sed 's/  |* //') ;}; f"
+
 [core]
-	excludesfile = /Users/magnus/.gitignore_global
+	excludesfile = ~/.config/git/.gitignore_global
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
+
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+
+[include]
+  path = ~/.config/git/local
