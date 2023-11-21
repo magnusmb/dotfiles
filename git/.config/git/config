@@ -30,3 +30,7 @@
 
 [include]
   path = ~/.config/git/local
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
