@@ -19,11 +19,13 @@ return { -- LSP
 
 		lsp.ensure_installed({
 			"tsserver",
-			"eslint",
 			"rust_analyzer",
-			"tailwindcss",
 			-- "sumneko_lua",
 		})
+
+		-- require("tailwindcss-colorizer-cmp").setup({
+		-- 	color_square_width = 1,
+		-- })
 
 		lsp.set_preferences({
 			suggest_lsp_servers = true,
@@ -42,7 +44,7 @@ return { -- LSP
 		})
 
 		lsp.on_attach(function(client, bufnr)
-			require("tailwindcss-colors").buf_attach(bufnr)
+			-- require("tailwindcss-colors").buf_attach(bufnr)
 
 			local opts = { buffer = bufnr, remap = false }
 

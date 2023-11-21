@@ -1,4 +1,4 @@
-vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v18.14.2/bin:" . $PATH')
+vim.cmd('let $PATH = "/Users/magnus/.nvm/versions/node/v18.16.1/bin:" . $PATH')
 
 Remap = function(mode, keys, command, opts, description)
 	if description == nil then
@@ -35,13 +35,13 @@ require("lazy").setup("plugins", {
 			event = "event",
 			ft = "filetype",
 			init = "init ",
-			import = " ",
+			import = "import ",
 			keys = "keys ",
 			lazy = " ",
 			loaded = "●",
 			not_loaded = "○",
 			plugin = "plugin",
-			runtime = " ",
+			runtime = "runtime ",
 			source = "source",
 			start = "",
 			task = "✓",
